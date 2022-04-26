@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wborges- <wborges-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 20:15:32 by wborges-          #+#    #+#             */
-/*   Updated: 2022/04/20 22:21:12 by wborges-         ###   ########.fr       */
+/*   Created: 2022/04/22 20:49:42 by wborges-          #+#    #+#             */
+/*   Updated: 2022/04/25 16:20:26 by wborges-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *find, size_t slen)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	flen;
-
-	if (*find == '\0')
-		return ((char *)str);
-	flen = ft_strlen(find);
-	while (*str && slen >= flen)
+	while (lst)
 	{
-		if (!(ft_strncmp(str, find, flen)))
-			return ((char *)str);
-		slen--;
-		str++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (0);
 }

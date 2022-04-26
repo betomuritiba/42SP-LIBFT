@@ -6,7 +6,7 @@
 /*   By: wborges- <wborges-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 22:54:57 by wborges-          #+#    #+#             */
-/*   Updated: 2022/04/07 22:05:00 by wborges-         ###   ########.fr       */
+/*   Updated: 2022/04/21 17:13:24 by wborges-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ char	*ft_strchr(const char *str, int c)
 		else
 			str++;
 	}
+	if (c == 0)
+		return ((char *)str);
 	return (0);
 }

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wborges- <wborges-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 20:15:32 by wborges-          #+#    #+#             */
-/*   Updated: 2022/04/20 22:21:12 by wborges-         ###   ########.fr       */
+/*   Created: 2022/04/22 18:59:47 by wborges-          #+#    #+#             */
+/*   Updated: 2022/04/22 19:11:04 by wborges-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *find, size_t slen)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	flen;
+	int		count;
+	t_list	*temp;
 
-	if (*find == '\0')
-		return ((char *)str);
-	flen = ft_strlen(find);
-	while (*str && slen >= flen)
+	count = 0;
+	temp = lst;
+	while (temp)
 	{
-		if (!(ft_strncmp(str, find, flen)))
-			return ((char *)str);
-		slen--;
-		str++;
+		temp = temp->next;
+		count++;
 	}
-	return (0);
+	return (count);
 }

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wborges- <wborges-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 20:15:32 by wborges-          #+#    #+#             */
-/*   Updated: 2022/04/20 22:21:12 by wborges-         ###   ########.fr       */
+/*   Created: 2022/04/22 15:58:24 by wborges-          #+#    #+#             */
+/*   Updated: 2022/04/22 16:19:51 by wborges-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *find, size_t slen)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	flen;
+	t_list	*n;
 
-	if (*find == '\0')
-		return ((char *)str);
-	flen = ft_strlen(find);
-	while (*str && slen >= flen)
-	{
-		if (!(ft_strncmp(str, find, flen)))
-			return ((char *)str);
-		slen--;
-		str++;
-	}
-	return (0);
+	n = malloc(sizeof(t_list));
+	if (!n)
+		return (NULL);
+	n->content = content;
+	n->next = NULL;
+	return (n);
 }

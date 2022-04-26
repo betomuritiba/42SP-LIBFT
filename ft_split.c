@@ -6,34 +6,36 @@
 /*   By: wborges- <wborges-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 22:21:00 by wborges-          #+#    #+#             */
-/*   Updated: 2022/04/11 22:25:25 by wborges-         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:24:51 by wborges-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_nsplit(const char *str, char c);
+int		ft_nword(const char *str, char c);
 size_t	ft_wordlen(const char *str, char c);
 
 char	**ft_split(const char *s, char c)
 {
-	int		n_split;
+	int		n_word;
 	int		i;
 	char	**words;
 	size_t	size;
 
-	n_split = ft_nsplit(s, c);
-	words = (char **)malloc(sizeof(char *) * (n_split + 2));
+	n_word = ft_nword(s, c);
+	words = (char **)malloc(sizeof(char *) * (n_word + 1));
 	if (!words)
 		return (NULL);
 	i = 0;
-	while (i <= n_split)
+	while (i < n_word)
 	{
-		size = ft_wordlen(s, c) + 1;
-		words[i] = malloc(sizeof(char) * size);
+		while (*s == c)
+			s++;
+		size = ft_wordlen(s, c);
+		words[i] = malloc(sizeof(char) * (size + 1));
 		if (!words[i])
 			return (NULL);
-		ft_strlcpy(words[i], s, size);
+		ft_strlcpy(words[i], s, size + 1);
 		s = s + size;
 		i++;
 	}
@@ -51,7 +53,7 @@ size_t	ft_wordlen(const char *str, char c)
 	return (i);
 }
 
-int	ft_nsplit(const char *str, char c)
+int	ft_nword(const char *str, char c)
 {
 	int	i;
 
@@ -59,8 +61,13 @@ int	ft_nsplit(const char *str, char c)
 	while (*str)
 	{
 		if (*str == c)
+			str++;
+		else
+		{
+			while (*str != c && *str)
+				str++;
 			i++;
-		str++;
+		}
 	}
 	return (i);
 }
